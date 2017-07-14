@@ -4,7 +4,7 @@ which installfromuri > /dev/null
 installfromuri_available=$?
 
 which addvhost > /dev/null
-addvhost_available=$?download
+addvhost_available=$?
 
 which downloadwordpress > /dev/null
 downloadwordpress_available=$?
@@ -23,12 +23,24 @@ echo downloadwordpress: $downloadwordpress_available
 #
 installwordpress_dostuffs() {
 
-    if [ -z $1 ] || [ -z $2 ]; then
+    if [ -z $1 ]; then
+        echo You need to provides two arguments:
+        echo first: The site name
+        echo second: The path for the local virtualhost folder
     fi
 
     downloadwordpress $1
-    mv $1 $2
-    addvhost $1
+    ls
+    # mv $1 $2
+    #source $(which addvhost) $1
+    echo Aloha!!!!
+}
+
+##
+# Tries to download the things
+#
+installwordpress_donwloadeverything() {
+    echo Something is missing...
 }
 
 ##
