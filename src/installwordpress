@@ -25,6 +25,9 @@ installwordpress_dostuffs() {
         echo second: The path for the local virtualhost folder
     fi
 
+    source $(which ask_mysql)
+    do_ask_mysql
+
     downloadwordpress $1
 
     source $(which addvhost)
@@ -35,9 +38,6 @@ installwordpress_dostuffs() {
     # The $htdocs_root comes from the addvhost
     #
     mv $1 $htdocs_root/
-
-    source $(which ask_mysql)
-    do_ask_mysql
 }
 
 ##
