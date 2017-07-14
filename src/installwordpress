@@ -22,7 +22,13 @@ echo downloadwordpress: $downloadwordpress_available
 # Suppose that all utilities needed already is in the system
 #
 installwordpress_dostuffs() {
+
+    if [ -z $1 ] || [ -z $2 ]; then
+    fi
+
     downloadwordpress $1
+    mv $1 $2
+    addvhost $1
 }
 
 ##
