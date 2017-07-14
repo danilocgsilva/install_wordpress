@@ -9,13 +9,9 @@ addvhost_available=$?
 which downloadwordpress > /dev/null
 downloadwordpress_available=$?
 
-##
-# Debug
-# please, remove after the development is finished
-#
-echo installfromuri: $installfromuri_available
-echo addvhost: $addvhost_available
-echo downloadwordpress: $downloadwordpress_available
+which ask_mysql > /dev/null
+ask_mysql_available=$?
+
 
 ##
 # Do stuffs.
@@ -30,10 +26,18 @@ installwordpress_dostuffs() {
     fi
 
     downloadwordpress $1
-    ls
-    # mv $1 $2
-    #source $(which addvhost) $1
-    echo Aloha!!!!
+
+    source $(which addvhost)
+
+    addvhost_dostuffs $1
+
+    ##
+    # The $htdocs_root comes from the addvhost
+    #
+    mv $1 $htdocs_root/
+
+    source $(which ask_mysql)
+    do_ask_mysql
 }
 
 ##
@@ -47,7 +51,7 @@ installwordpress_donwloadeverything() {
 # Everything needed is here?
 #
 if [ $addvhost_available -eq 0 ] && [ $downloadwordpress_available -eq 0 ] ; then
-    installwordpress_dostuffs
+    installwordpress_dostuffs $1
 else
     installwordpress_donwloadeverything
 fi
