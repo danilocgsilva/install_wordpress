@@ -50,7 +50,7 @@ installwordpress_donwloadeverything() {
 ##
 # Everything needed is here?
 #
-if [ $addvhost_available -eq 0 ] && [ $downloadwordpress_available -eq 0 ] ; then
+if [ $addvhost_available -eq 0 ] && [ $downloadwordpress_available -eq 0 ] && [ $ask_mysql_available -eq 0 ] ; then
     installwordpress_dostuffs $1
 else
     installwordpress_donwloadeverything
