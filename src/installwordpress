@@ -1,0 +1,35 @@
+#!/bin/bash
+
+which installfromuri > /dev/null
+installfromuri_available=$?
+
+which addvhost > /dev/null
+addvhost_available=$?download
+
+which downloadwordpress > /dev/null
+downloadwordpress_available=$?
+
+##
+# Debug
+# please, remove after the development is finished
+#
+echo installfromuri: $installfromuri_available
+echo addvhost: $addvhost_available
+echo downloadwordpress: $downloadwordpress_available
+
+##
+# Do stuffs.
+# Suppose that all utilities needed already is in the system
+#
+installwordpress_dostuffs() {
+    downloadwordpress $1
+}
+
+##
+# Everything needed is here?
+#
+if [ $addvhost_available -eq 0 ] && [ $downloadwordpress_available -eq 0 ] ; then
+    installwordpress_dostuffs
+else
+    installwordpress_donwloadeverything
+fi

@@ -1,0 +1,3 @@
+Check if auto-download utility.
+Check for addvhost utility.
+Check for download_wordpress utility.
