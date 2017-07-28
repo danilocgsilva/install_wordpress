@@ -12,6 +12,9 @@ downloadwordpress_available=$?
 which ask_mysql > /dev/null
 ask_mysql_available=$?
 
+which askshell > /dev/null
+askshell_available=$?
+
 
 ##
 # Do stuffs.
@@ -24,6 +27,18 @@ installwordpress_dostuffs() {
         echo first: The site name
         echo second: The path for the local virtualhost folder
     fi
+
+    source $(which askshell)
+
+    if [ $(whoami) != root ]; then
+        echo You may run this command as root. So permissions can be granted to the folders to let the site configuration be more swit.
+    else
+        askshell_notempty "Please, provides here the webserver user, that must be allowed to change files inside the application files: " daemon_user
+        askshell_notempty "Please, provides the user group that will change the files in the application: " user_grp
+
+        echo The daemon_user is $daemon_user
+        echo The user_grp is $user_grp
+    fi 
 
     source $(which ask_mysql)
     do_ask_mysql
@@ -50,7 +65,10 @@ installwordpress_donwloadeverything() {
 ##
 # Everything needed is here?
 #
-if [ $addvhost_available -eq 0 ] && [ $downloadwordpress_available -eq 0 ] && [ $ask_mysql_available -eq 0 ] ; then
+if [ $addvhost_available -eq 0 ] &&
+    [ $downloadwordpress_available -eq 0 ] &&
+    [ $ask_mysql_available -eq 0 ] &&
+    [ $askshell_available -eq 0 ] ; then
     installwordpress_dostuffs $1
 else
     installwordpress_donwloadeverything
