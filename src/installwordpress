@@ -39,12 +39,17 @@ installwordpress_dostuffs() {
 
         echo The daemon_user is $daemon_user
         echo The user_grp is $user_grp
-    fi 
+    fi
 
     source $(which ask_mysql)
     do_ask_mysql
 
     downloadwordpress $1
+
+    if [ $(whoami) = root ]; then
+        chown $daemon_user $1
+        chown $daemon_user:$user_grp $1/wp-content
+    fi
 
     source $(which addvhost)
 
