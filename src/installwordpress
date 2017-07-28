@@ -26,6 +26,7 @@ installwordpress_dostuffs() {
         echo You need to provides two arguments:
         echo first: The site name
         echo second: The path for the local virtualhost folder
+        exit
     fi
 
     source $(which askshell)
