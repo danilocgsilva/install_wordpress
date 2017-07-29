@@ -79,7 +79,7 @@ installwordpress_donwloadeverything() {
         fi
 
         if [ $ask_mysql_available -ne 0 ]; then
-            installfromalias src ask_mysql askmysql
+            installfromalias programfiles ask_mysql askmysql
         fi
 
         if [ $ask_mysql_available -ne 0 ]; then
