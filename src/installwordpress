@@ -29,6 +29,7 @@ installwordpress_dostuffs() {
         exit
     fi
 
+
     source $(which askshell)
 
     if [ $(whoami) != root ]; then
@@ -65,7 +66,29 @@ installwordpress_dostuffs() {
 # Tries to download the things
 #
 installwordpress_donwloadeverything() {
-    echo Something is missing...
+    if [ ! which installfromalias > /dev/null 2>&1 ]; then
+        echo Something is missing
+    else
+
+        if [ $addvhost_available -ne 0 ]; then
+            installfromalias src addvhost addvhost
+        fi
+
+        if [ $downloadwordpress_available -ne 0 ]; then
+            installfromalias src install_wordpress installwordpress
+        fi
+
+        if [ $ask_mysql_available -ne 0 ]; then
+            installfromalias src ask_mysql askmysql
+        fi
+
+        if [ $ask_mysql_available -ne 0 ]; then
+            installfromalias src ask_mysql askmysql
+        fi
+
+        installwordpress_donwloadeverything
+
+    fi
 }
 
 ##
