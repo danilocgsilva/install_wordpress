@@ -1,18 +1,18 @@
 #!/bin/bash
 
-which installfromuri > /dev/null
+which installfromuri > /dev/null 2>&1
 installfromuri_available=$?
 
-which addvhost > /dev/null
+which addvhost > /dev/null 2>&1
 addvhost_available=$?
 
-which downloadwordpress > /dev/null
+which downloadwordpress > /dev/null 2>&1
 downloadwordpress_available=$?
 
-which ask_mysql > /dev/null
+which ask_mysql > /dev/null 2>&1
 ask_mysql_available=$?
 
-which askshell > /dev/null
+which askshell > /dev/null 2>&1
 askshell_available=$?
 
 
