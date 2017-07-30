@@ -75,7 +75,7 @@ installwordpress_donwloadeverything() {
         fi
 
         if [ $downloadwordpress_available -ne 0 ]; then
-            installfromalias src download_wordpress installwordpress
+            installfromalias src download_wordpress downloadwordpress
         fi
 
         if [ $ask_mysql_available -ne 0 ]; then
