@@ -67,7 +67,11 @@ installwordpress_dostuffs() {
 #
 installwordpress_donwloadeverything() {
     if [ ! $(which installfromalias > /dev/null 2>&1) ]; then
-        echo Something is missing
+        if [ ! $(which installfromalias > /dev/null 2>&1) ]; then
+            echo Something is missing
+        else
+            installfromuri https://raw.githubusercontent.com/danilocgsilva/install_from_alias/master/src/installfromuri
+        fi
     else
 
         if [ $addvhost_available -ne 0 ]; then
