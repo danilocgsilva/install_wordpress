@@ -66,8 +66,8 @@ installwordpress_dostuffs() {
 # Tries to download the things
 #
 installwordpress_donwloadeverything() {
-    if [ ! which installfromalias > /dev/null 2>&1 ]; then
-        if [ ! which installfromuri > /dev/null 2>&1 ]; then
+    if ! which installfromalias > /dev/null 2>&1 ; then
+        if ! which installfromuri > /dev/null 2>&1 ; then
             echo Something is missing
         else
             installfromuri https://raw.githubusercontent.com/danilocgsilva/install_from_alias/master/src/installfromalias
