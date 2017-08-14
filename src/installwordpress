@@ -66,8 +66,8 @@ installwordpress_dostuffs() {
 # Tries to download the things
 #
 installwordpress_donwloadeverything() {
-    if [ ! $(which installfromalias > /dev/null 2>&1) ]; then
-        if [ ! $(which installfromuri > /dev/null 2>&1) ]; then
+    if [ ! which installfromalias > /dev/null 2>&1 ]; then
+        if [ ! which installfromuri > /dev/null 2>&1 ]; then
             echo Something is missing
         else
             installfromuri https://raw.githubusercontent.com/danilocgsilva/install_from_alias/master/src/installfromalias
@@ -90,7 +90,7 @@ installwordpress_donwloadeverything() {
             installfromalias programfiles ask_shell askshell
         fi
 
-        installwordpress_donwloadeverything
+        installwordpress_dostuffs $1
 
     fi
 }
@@ -98,10 +98,10 @@ installwordpress_donwloadeverything() {
 ##
 # Everything needed is here?
 #
-if [ $addvhost_available -eq 0 ] &&
-    [ $downloadwordpress_available -eq 0 ] &&
-    [ $ask_mysql_available -eq 0 ] &&
-    [ $askshell_available -eq 0 ] ; then
+if [ $addvhost_available != 0 ] &&
+    [ $downloadwordpress_available != 0 ] &&
+    [ $ask_mysql_available != 0 ] &&
+    [ $askshell_available != 0 ] ; then
     installwordpress_dostuffs $1
 else
     installwordpress_donwloadeverything
