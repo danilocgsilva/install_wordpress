@@ -22,13 +22,12 @@ askshell_available=$?
 #
 installwordpress_dostuffs() {
 
-    if [ -z $1 ]; then
+    if [ -z $1 ] || [ -z $2 ] ; then
         echo You need to provides two arguments:
         echo first: The site name
         echo second: The path for the local virtualhost folder
         exit
     fi
-
 
     source $(which askshell)
 
@@ -90,7 +89,7 @@ installwordpress_donwloadeverything() {
             installfromalias programfiles ask_shell askshell
         fi
 
-        installwordpress_dostuffs $1
+        installwordpress_dostuffs $1 $2
 
     fi
 }
@@ -102,7 +101,7 @@ if [ $addvhost_available != 0 ] &&
     [ $downloadwordpress_available != 0 ] &&
     [ $ask_mysql_available != 0 ] &&
     [ $askshell_available != 0 ] ; then
-    installwordpress_dostuffs $1
+    installwordpress_dostuffs $1 $2
 else
-    installwordpress_donwloadeverything
+    installwordpress_donwloadeverything $1 $2
 fi
